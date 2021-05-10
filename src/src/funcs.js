@@ -278,8 +278,7 @@ function directiveUnBind(el) {
   el.$hsLayout = null;
 }
 function directiveForDomfunction (el, binding) {
-  let callback= binding.swipeCallBack;
-  let {stop,prevent}=binding;
+  let {stop,prevent,swipeCallBack}=binding;
   let baseInfo={
       startX:0,
       startY:0,
@@ -291,7 +290,7 @@ function directiveForDomfunction (el, binding) {
   //标记事件
   let startFn=fnStartParams(baseInfo,el);
   let moveFn=fnMoveParams(baseInfo,el);
-  let endFn=fnEndParams('doms',baseInfo,{},callback,el);
+  let endFn=fnEndParams('doms',baseInfo,{},swipeCallBack,el);
   if (isMobile()) {
       el.addEventListener("touchstart",startFn, false);
       el.addEventListener('touchmove', moveFn, false);
