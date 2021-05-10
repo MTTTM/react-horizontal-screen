@@ -29,8 +29,8 @@ npm install react-horizontal-screen
 
 | key            | desc                                                                     | default  | required |
 | -------------- | ------------------------------------------------------------------------ | -------- | -------- |
-| swipeCallBack  | swipe event callback function                                            | --       | TRUE     |
-| stop           | event.stopPropagation()                                                  | --       | TRUE     |
+| swipeCallBack  | swipe event callback function                                            | --       | FALSE     |
+| stop           | event.stopPropagation()                                                  | --       | FALSE     |
 | prevent        | event.preventDefault()                                                   | --hc-var | FALSE    |
 
 ## Function event
