@@ -18,6 +18,9 @@ export default class HorizontalScreen extends React.Component{
   componentDidMount() {
     directive.bind(this.myRef.current,this.props);
   }
+  componentWillUnmount(){
+    directive.bind(this.myRef.current);
+  }
   render() {
     return (
       <div ref={this.myRef}  {...this.props}>{this.props.children}</div>
