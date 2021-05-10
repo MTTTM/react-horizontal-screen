@@ -27,6 +27,8 @@
   "files": [
     "libs"
   ],
+  "repository": "https://github.com/MTTTM/react-horizontal-screen",
+  "description": "It provides horizontal web page layout and events",
   "keywords": [
     "react",
     "react-horizontal-screen",
