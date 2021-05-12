@@ -58,6 +58,11 @@ var HorizontalScreen = /*#__PURE__*/function (_React$Component) {
       _funcs.directive.bind(this.myRef.current, this.props);
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _funcs.directive.bind(this.myRef.current);
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("div", _extends({

@@ -390,9 +390,9 @@ function directiveUnBind(el) {
 }
 
 function directiveForDomfunction(el, binding) {
-  var callback = binding.swipeCallBack;
   var stop = binding.stop,
-      prevent = binding.prevent;
+      prevent = binding.prevent,
+      swipeCallBack = binding.swipeCallBack;
   var baseInfo = {
     startX: 0,
     startY: 0,
@@ -404,7 +404,7 @@ function directiveForDomfunction(el, binding) {
 
   var startFn = fnStartParams(baseInfo, el);
   var moveFn = fnMoveParams(baseInfo, el);
-  var endFn = fnEndParams('doms', baseInfo, {}, callback, el);
+  var endFn = fnEndParams('doms', baseInfo, {}, swipeCallBack, el);
 
   if (isMobile()) {
     el.addEventListener("touchstart", startFn, false);

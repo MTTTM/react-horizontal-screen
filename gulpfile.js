@@ -3,7 +3,16 @@ const babel = require('gulp-babel');
 const a=function (cb) {
   src("./src/src/*.js")
         .pipe(babel({
-          "presets": ["@babel/preset-react"]
+          "presets": ["@babel/preset-react",
+          [
+            "@babel/preset-env",
+            {
+              "useBuiltIns": "entry",//兼容，依赖core-js
+              "corejs": '3',
+              "targets": '> 1%,last 2 versions,not ie <= 11',
+            }
+          ]
+        ]
         }))
         .pipe(dest("./libs/"))
   cb();

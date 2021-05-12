@@ -1,11 +1,15 @@
 {
   "name": "react-horizontal-screen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-horizontal-screen": "^0.2.0"
   },
   "devDependencies": {
+    "core-js": "^3.12.1",
+    "install": "^0.13.0",
+    "npm": "^7.12.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "@babel/plugin-syntax-jsx": "^7.12.13",
@@ -27,6 +31,7 @@
   "files": [
     "libs"
   ],
+  "license": "MIT",
   "repository": "https://github.com/MTTTM/react-horizontal-screen",
   "description": "It provides horizontal web page layout and events",
   "keywords": [
