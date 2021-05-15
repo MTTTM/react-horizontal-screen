@@ -60,7 +60,7 @@ var HorizontalScreen = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      _funcs.directive.bind(this.myRef.current);
+      _funcs.directive.unbind(this.myRef.current);
     }
   }, {
     key: "render",
