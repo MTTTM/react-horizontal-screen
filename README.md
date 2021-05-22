@@ -2,7 +2,7 @@
 
 ## Desc
 - It provides horizontal web page layout and events.[online](https://llkx4.csb.app/)
-
+- [log](https://github.com/MTTTM/react-horizontal-screen/blob/main/log.md) 
 
 ## Start
 
