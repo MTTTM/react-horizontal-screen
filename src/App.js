@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.scss';
-//import {HorizontalScreen,SwipeWrap,event} from "./src/index.js"
- import {HorizontalScreen,SwipeWrap,event} from "react-horizontal-screen"
+// import {HorizontalScreen,SwipeWrap,event} from "./src/index.js"
+  import {HorizontalScreen,SwipeWrap,event} from "react-horizontal-screen"
 // import {HorizontalScreen,SwipeWrap,event} from "react-xx"
 event();
 export default class App extends React.Component{

@@ -20,8 +20,9 @@ export default class SwipeWrap extends React.Component{
     directiveForDom.bind(this.myRef.current,this.props);
   }
   render() {
+    let {stop,prevent,swipeCallBack,...params}=this.props;
     return (
-      <div ref={this.myRef}  {...this.props}>{this.props.children}</div>
+      <div ref={this.myRef}  {...params}>{this.props.children}</div>
     )
   }
 };

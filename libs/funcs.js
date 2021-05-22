@@ -303,7 +303,7 @@ function hsLayoutFunc() {
 
   el.$hsAdapted = true; //已适配
 
-  if (e) {
+  if (e !== false) {
     dispatch(adaptEvent, el.$hsAdapted);
     typeof adaptedCallback === "function" && adaptedCallback(true);
   }
@@ -364,9 +364,10 @@ function directiveBindfunction(el, binding) {
   };
 
   el.$delayLayout = function () {
+    var dispatchAdatedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     clearTimeout(timer);
     timer = setTimeout(function () {
-      return hsLayoutFunc(baseInfo);
+      return hsLayoutFunc(baseInfo, dispatchAdatedEvent);
     }, triggerTime);
   };
 

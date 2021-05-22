@@ -1,12 +1,12 @@
 {
-  "name": "react-horizontal-screen",
-  "version": "0.2.1",
+  "name": "react-horizontal-screenx",
+  "version": "0.2.2",
   "private": false,
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-horizontal-screen": "^0.2.0"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
+    "react-horizontal-screen": "^0.2.1",
     "core-js": "^3.12.1",
     "install": "^0.13.0",
     "npm": "^7.12.1",

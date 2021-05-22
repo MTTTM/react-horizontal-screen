@@ -22,8 +22,9 @@ export default class HorizontalScreen extends React.Component{
     directive.unbind(this.myRef.current);
   }
   render() {
+    let {adaptedCallback,attrs,...params}=this.props;
     return (
-      <div ref={this.myRef}  {...this.props}>{this.props.children}</div>
+      <div ref={this.myRef}  {...params}>{this.props.children}</div>
     )
   }
 };
