@@ -1,10 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.event = exports.directiveForDom = exports.directive = exports.isMobile = exports.isImmersive = exports.getDir = void 0;
-
 // +----------------------------------------------------------------------
 // | react-horizontal-screen
 // +----------------------------------------------------------------------
@@ -18,7 +11,7 @@ exports.event = exports.directiveForDom = exports.directive = exports.isMobile =
 /**
  * @returns {Number} 1=>横屏 0=>竖屏
  */
-var getDir = function getDir() {
+export var getDir = function getDir() {
   var clientWidth = document.documentElement.clientWidth;
   var clientHeight = document.documentElement.clientHeight;
 
@@ -32,18 +25,12 @@ var getDir = function getDir() {
 * @description isImmersiveNav
 */
 
-
-exports.getDir = getDir;
-
-var isImmersive = function isImmersive() {
+export var isImmersive = function isImmersive() {
   var wHeight = window.innerHeight;
   var dHeight = document.documentElement.clientHeight;
   return wHeight > dHeight;
 };
-
-exports.isImmersive = isImmersive;
-
-var isMobile = function isMobile() {
+export var isMobile = function isMobile() {
   var ua = navigator.userAgent.toLowerCase();
   var canTouch = "ontouchstart" in window && "ontouchstart" in document;
 
@@ -60,11 +47,11 @@ var isMobile = function isMobile() {
 * @param {Null or Document} target 
 */
 
+var dispatch = function dispatch(event, data, target) {
+  if (target === void 0) {
+    target = null;
+  }
 
-exports.isMobile = isMobile;
-
-var dispatch = function dispatch(event, data) {
-  var target = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   event.data = {
     data: data
   };
@@ -121,9 +108,11 @@ function stopPropagation(el, ev) {
 */
 
 
-function fnStartParams() {
-  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var el = arguments.length > 1 ? arguments[1] : undefined;
+function fnStartParams(obj, el) {
+  if (obj === void 0) {
+    obj = {};
+  }
+
   return function (ev) {
     stopPropagation(el, ev);
     preventDefault(el, ev);
@@ -142,9 +131,11 @@ function fnStartParams() {
 */
 
 
-function fnMoveParams() {
-  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var el = arguments.length > 1 ? arguments[1] : undefined;
+function fnMoveParams(obj, el) {
+  if (obj === void 0) {
+    obj = {};
+  }
+
   return function (ev) {
     stopPropagation(el, ev);
     preventDefault(el, ev);
@@ -167,18 +158,25 @@ function fnMoveParams() {
 */
 
 
-function fnEndParams() {
-  var callbackType = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  var baseInfo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var eventMaps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var callback = arguments.length > 3 ? arguments[3] : undefined;
-  var el = arguments.length > 4 ? arguments[4] : undefined;
+function fnEndParams(callbackType, baseInfo, eventMaps, callback, el) {
+  if (callbackType === void 0) {
+    callbackType = "";
+  }
+
+  if (baseInfo === void 0) {
+    baseInfo = {};
+  }
+
+  if (eventMaps === void 0) {
+    eventMaps = {};
+  }
+
   var swipes = {
     win: function win(swipeName, data) {
       if (eventMaps[swipeName] && eventMaps[swipeName] instanceof Event) {
         dispatch(eventMaps[swipeName], data);
       } else {
-        console.error("events [".concat(swipeName, "] of window is no reigstered"));
+        console.error("events [" + swipeName + "] of window is no reigstered");
       }
     },
     doms: function doms(swipeName, data) {
@@ -190,9 +188,10 @@ function fnEndParams() {
     preventDefault(el, ev);
     var dir = getDir(); //1=>横屏 0=>竖屏
 
-    var disY = baseInfo.disY,
-        disc = baseInfo.disc,
-        disX = baseInfo.disX;
+    var _baseInfo = baseInfo,
+        disY = _baseInfo.disY,
+        disc = _baseInfo.disc,
+        disX = _baseInfo.disX;
 
     if (dir === 1 || !isMobile()) {
       if (disY < 0 && disY < Number(-disc)) {
@@ -253,16 +252,19 @@ function fnEndParams() {
 */
 
 
-function hsLayoutFunc() {
-  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var e = arguments.length > 1 ? arguments[1] : undefined;
-  var oneTimesWidth = obj.oneTimesWidth,
-      oneTimesHeight = obj.oneTimesHeight,
-      el = obj.el,
-      cssVar = obj.cssVar,
-      setWrapAttr = obj.setWrapAttr,
-      adaptEvent = obj.adaptEvent,
-      adaptedCallback = obj.adaptedCallback;
+function hsLayoutFunc(obj, e) {
+  if (obj === void 0) {
+    obj = {};
+  }
+
+  var _obj = obj,
+      oneTimesWidth = _obj.oneTimesWidth,
+      oneTimesHeight = _obj.oneTimesHeight,
+      el = _obj.el,
+      cssVar = _obj.cssVar,
+      setWrapAttr = _obj.setWrapAttr,
+      adaptEvent = _obj.adaptEvent,
+      adaptedCallback = _obj.adaptedCallback;
   var clientWidth = window.innerWidth;
   var clientHeight = window.innerHeight;
   var maxWidth = clientWidth > clientHeight ? clientWidth : clientHeight;
@@ -279,16 +281,16 @@ function hsLayoutFunc() {
     }
   }
 
-  document.querySelector('html').style.setProperty("--".concat(cssVar), percent); //在竖屏状态我们通过添加transform:rotate(90deg)，来让这个页面横过来
+  document.querySelector('html').style.setProperty("--" + cssVar, percent); //在竖屏状态我们通过添加transform:rotate(90deg)，来让这个页面横过来
 
   if ((window.orientation == null || window.orientation === 180 || window.orientation === 0) && !isPc) {
     //竖屏状态
     el.style.webkitTransform = el.style.transform = "rotate(90deg)";
-    el.style.webkitTransformOrigin = el.style.transformOrigin = "".concat(clientWidth / 2, "px center");
+    el.style.webkitTransformOrigin = el.style.transformOrigin = clientWidth / 2 + "px center";
 
     if (setWrapAttr) {
-      el.style.width = "".concat(clientHeight, "px");
-      el.style.height = "".concat(clientWidth, "px");
+      el.style.width = clientHeight + "px";
+      el.style.height = clientWidth + "px";
     } //如果已经处于横屏状态就不做其他处理了
 
   } else if (window.orientation === 90 || window.orientation === -90 || isPc) {
@@ -296,8 +298,8 @@ function hsLayoutFunc() {
     el.style.webkitTransform = el.style.transform = "rotate(0)";
 
     if (setWrapAttr) {
-      el.style.width = "".concat(clientWidth, "px");
-      el.style.height = "".concat(clientHeight, "px");
+      el.style.width = clientWidth + "px";
+      el.style.height = clientHeight + "px";
     }
   }
 
@@ -358,13 +360,19 @@ function directiveBindfunction(el, binding) {
   };
   var timer;
 
-  el.$hsLayout = function () {
-    var dispatchAdatedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  el.$hsLayout = function (dispatchAdatedEvent) {
+    if (dispatchAdatedEvent === void 0) {
+      dispatchAdatedEvent = false;
+    }
+
     hsLayoutFunc(baseInfo, dispatchAdatedEvent);
   };
 
-  el.$delayLayout = function () {
-    var dispatchAdatedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  el.$delayLayout = function (dispatchAdatedEvent) {
+    if (dispatchAdatedEvent === void 0) {
+      dispatchAdatedEvent = false;
+    }
+
     clearTimeout(timer);
     timer = setTimeout(function () {
       return hsLayoutFunc(baseInfo, dispatchAdatedEvent);
@@ -418,15 +426,13 @@ function directiveForDomfunction(el, binding) {
   }
 }
 
-var directive = {
+export var directive = {
   bind: directiveBindfunction,
   unbind: directiveUnBind
 };
-exports.directive = directive;
-var directiveForDom = {
+export var directiveForDom = {
   bind: directiveForDomfunction
 };
-exports.directiveForDom = directiveForDom;
 var eventInited = false;
 /**
 * 
@@ -435,18 +441,21 @@ var eventInited = false;
 * @description distance  事件距离，默认50
 */
 
-var event = function event() {
-  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    distance: 50,
-    pre: ''
-  };
+export var event = function event(obj) {
+  if (obj === void 0) {
+    obj = {
+      distance: 50,
+      pre: ''
+    };
+  }
 
   if (eventInited) {
     return;
   }
 
-  var pre = obj.pre,
-      distance = obj.distance;
+  var _obj2 = obj,
+      pre = _obj2.pre,
+      distance = _obj2.distance;
   var baseInfo = {
     startX: 0,
     startY: 0,
@@ -454,10 +463,10 @@ var event = function event() {
     distance: distance
   }; //标记事件
 
-  var swipeLeft = createEvent("".concat(pre, "swipeLeft"));
-  var swipeRight = createEvent("".concat(pre, "swipeRight"));
-  var swipeTop = createEvent("".concat(pre, "swipeTop"));
-  var swipeBottom = createEvent("".concat(pre, "swipeBottom"));
+  var swipeLeft = createEvent(pre + "swipeLeft");
+  var swipeRight = createEvent(pre + "swipeRight");
+  var swipeTop = createEvent(pre + "swipeTop");
+  var swipeBottom = createEvent(pre + "swipeBottom");
   var eventMaps = {
     swipeLeft: swipeLeft,
     swipeRight: swipeRight,
@@ -477,5 +486,3 @@ var event = function event() {
 
   eventInited = true;
 };
-
-exports.event = event;

@@ -1,18 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.event = exports.SwipeWrap = exports.HorizontalScreen = void 0;
-
-var _horizontalScreen = _interopRequireDefault(require("./horizontalScreen.js"));
-
-var _swipeWrap = _interopRequireDefault(require("./swipeWrap.js"));
-
-var _funcs = require("./funcs.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // +----------------------------------------------------------------------
 // | react-horizontal-screen
 // +----------------------------------------------------------------------
@@ -22,9 +7,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // +----------------------------------------------------------------------
 // | Author: MTTTM 
 // +----------------------------------------------------------------------
-var HorizontalScreen = _horizontalScreen.default;
-exports.HorizontalScreen = HorizontalScreen;
-var SwipeWrap = _swipeWrap.default;
-exports.SwipeWrap = SwipeWrap;
-var event = _funcs.event;
-exports.event = event;
+import horizontalScreen from "./horizontalScreen.js";
+import swipeWrap from "./swipeWrap.js";
+import { event as Event } from "./funcs.js";
+export var HorizontalScreen = horizontalScreen;
+export var SwipeWrap = swipeWrap;
+export var event = Event;
